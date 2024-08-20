@@ -40,15 +40,3 @@ button {
 button:hover {
     background-color: #218838;
 }
-
-.notification {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 4px;
-}
-
-.hidden {
-    display: none;
-}
