@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Header</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Your Name</h1>
+        <form id="nameForm">
+            <input type="text" id="nameInput" placeholder="Your name..." required>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="notification" class="notification hidden">
+            <h2 id="notificationHeader"></h2>
+            <p>This is your notification message!</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
