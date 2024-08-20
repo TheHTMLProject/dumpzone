@@ -24,7 +24,9 @@ document.getElementById('nameForm').addEventListener('submit', function(e) {
 function showNotification(name) {
     const options = {
         body: 'This is your notification message!',
-        icon: 'https://via.placeholder.com/150' // You can use a custom icon here
+        icon: 'https://via.placeholder.com/150', // You can use a custom icon here
+        badge: 'https://via.placeholder.com/100', // Smaller icon for notification badge on Chrome OS
+        requireInteraction: false // Automatically closes the notification after a while
     };
     new Notification(`Hello, ${name}!`, options);
 }
