@@ -43,6 +43,27 @@
             }
         });
     };
+
+    // Listen for the Send button click
+    document.getElementById('sendButton').addEventListener('click', function() {
+        const messageInput = document.getElementById('messageInput');
+        const message = messageInput.value;
+
+        // Prepend the user's name to the message
+        const finalMessage = `${name}: ${message}`;
+
+        // Send the message through Tawk.to API
+        if (Tawk_API.message) {
+            Tawk_API.message({
+                text: finalMessage,
+                type: 'text'
+            });
+        }
+
+        // Clear the input field after sending the message
+        messageInput.value = '';
+    });
+
     </script>
     <!--End of Tawk.to Script-->
 </body>
