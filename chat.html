@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+</head>
+<body>
+    <h1>Welcome to the Chat Room</h1>
+    <p id="welcomeMessage"></p>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        document.getElementById('welcomeMessage').textContent = `Hello, ${name}! Welcome to the chat.`;
+
+        // Here you can add your chat widget or chat functionality
+    </script>
+</body>
+</html>
