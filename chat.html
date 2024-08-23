@@ -4,54 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Room</title>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
-        import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDZfYm131EiXnJLYUnwNEpXAvCCdnFxI5U",
-            authDomain: "the-html-project-chat.firebaseapp.com",
-            databaseURL: "https://the-html-project-chat-default-rtdb.firebaseio.com", // Add this line
-            projectId: "the-html-project-chat",
-            storageBucket: "the-html-project-chat.appspot.com",
-            messagingSenderId: "107552584648",
-            appId: "1:107552584648:web:08cadacefcf4f942e646fd",
-            measurementId: "G-94J8SWL1DD"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const database = getDatabase(app);
-
-        // Get the user's name from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const name = urlParams.get('name');
-        document.getElementById('welcomeMessage').textContent = `Hello, ${name}! Welcome to the chat.`;
-
-        // Send a message to the database
-        document.getElementById('sendButton').addEventListener('click', () => {
-            const message = document.getElementById('messageInput').value;
-            if (message) {
-                push(ref(database, 'messages'), {
-                    name: name,
-                    message: message
-                });
-                document.getElementById('messageInput').value = '';
-            }
-        });
-
-        // Listen for new messages
-        onChildAdded(ref(database, 'messages'), (snapshot) => {
-            const messageData = snapshot.val();
-            const messageElement = document.createElement('div');
-            messageElement.textContent = `${messageData.name}: ${messageData.message}`;
-            document.getElementById('messages').appendChild(messageElement);
-        });
-    </script>
 </head>
 <body>
     <h1>Welcome to the Chat Room</h1>
@@ -61,5 +13,20 @@
         <input type="text" id="messageInput" placeholder="Type a message...">
         <button id="sendButton">Send</button>
     </div>
+
+    <!-- Tawk.to Embed Code -->
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/66c8e6b1ea492f34bc09790d/1i60ca9h2';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
 </body>
 </html>
