@@ -4,18 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Room</title>
-</head>
-<body>
-    <h1>Welcome to the Chat Room</h1>
-    <p id="welcomeMessage"></p>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
+        import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
 
-    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDZfYm131EiXnJLYUnwNEpXAvCCdnFxI5U",
+            authDomain: "the-html-project-chat.firebaseapp.com",
+            projectId: "the-html-project-chat",
+            storageBucket: "the-html-project-chat.appspot.com",
+            messagingSenderId: "107552584648",
+            appId: "1:107552584648:web:08cadacefcf4f942e646fd",
+            measurementId: "G-94J8SWL1DD"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+
+        // Get the user's name from the URL
         const urlParams = new URLSearchParams(window.location.search);
         const name = urlParams.get('name');
         document.getElementById('welcomeMessage').textContent = `Hello, ${name}! Welcome to the chat.`;
 
-        // Here you can add your chat widget or chat functionality
+        // Send a message to the database
+        document.getElementById('sendButton').addEventListener('click', () => {
+            const message = document.getElementById('messageInput').value;
+            if (message) {
+                push(ref(database, 'messages'), {
+                    name: name,
+                    message: message
+                });
+                document.getElementById('messageInput').value = '';
+            }
+        });
+
+        // Listen for new messages
+        onChildAdded(ref(database, 'messages'), (snapshot) => {
+            const messageData = snapshot.val();
+            const messageElement = document.createElement('div');
+            messageElement.textContent = `${messageData.name}: ${messageData.message}`;
+            document.getElementById('messages').appendChild(messageElement);
+        });
     </script>
+</head>
+<body>
+    <h1>Welcome to the Chat Room</h1>
+    <p id="welcomeMessage"></p>
+    <div id="chatContainer">
+        <div id="messages"></div>
+        <input type="text" id="messageInput" placeholder="Type a message...">
+        <button id="sendButton">Send</button>
+    </div>
 </body>
 </html>
-
